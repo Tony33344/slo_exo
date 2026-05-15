@@ -47,7 +47,7 @@ export const translations = {
       liveFoodDesc: "Cvrčki, kobilice, muhe, rožarji, ščurki, miši",
       equipment: "Oprema",
       equipmentDesc: "Stekleni terariji in akvariji po meri, oprema, substrati, razsvetljava, ogrevanje",
-      plants: "Egzotične rastline",
+      plants: "Eksotične rastline",
       plantsDesc: "Kaktusi, sukulente, bromelije, orhideje, praproti, mahovi",
       pets: "Dodatno",
       petsDesc: "Hrana, igrače in dodatki za pse in mačke",
