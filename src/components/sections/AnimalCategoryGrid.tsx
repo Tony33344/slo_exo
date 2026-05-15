@@ -1,49 +1,61 @@
 "use client";
 
+import Link from "next/link";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { t } from "@/lib/i18n/translations";
+import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 
 const categories = [
   {
     key: "reptiles",
     image: "/hero9Green-Snake-Bothriechis-marchi-National-Park-Cusuco-Sierra-del-Merendón-Honduras-Central-America-HD-Wallpapers-for-mobile-phones-2560x1600.jpg",
+    href: "/plazilci",
   },
   {
     key: "amphibians",
     image: "/hero3Green-frog-with-red-eyes-4k-ultra-HD-Wallpapers-for-computer-and-laptop.jpg",
+    href: "/dvozivke",
   },
   {
     key: "arachnids",
     image: "/aranchid animals_tarantulla_blue.jpg",
+    href: "/pajkovci",
   },
   {
     key: "insects",
     image: "/insect.jpg",
+    href: "/zuzelke",
   },
   {
     key: "rodents",
     image: "/hamster-sauvage.jpg",
+    href: "/glodavci",
   },
   {
     key: "fish",
     image: "/hero Mandarinfish-Fish-is-a-small-exotic-colorful-fish-of-the-dragonet-aquarium-fish-family-3840x2400.jpg",
+    href: "/ribe-in-rastline",
   },
   {
     key: "liveFood",
     image: "/eardrums-legs-Crickets-sides-bodies-breathing-holes.webp",
+    href: "/ziva-hrana",
   },
   {
     key: "equipment",
     image: "/aquarium.jpg",
+    href: "/oprema",
   },
   {
     key: "plants",
     image: "/hero5Reptiles-Green-iguana-predominantly-herbivore-green-lizard-of-the-genus-Iguana-Length-30-to-42-cm-Head-to-base-of-tail.jpg",
+    href: "/egzoticne-rastline",
   },
   {
     key: "pets",
     image: "/top_dog_foods_for_small_dogs.jpg",
+    href: "/dodatno",
   },
 ] as const;
 
@@ -62,33 +74,38 @@ export function AnimalCategoryGrid() {
           {t(lang, "animalCategories.title")}
         </motion.h2>
         <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
-          {categories.map(({ key, image }) => (
-            <motion.div
-              key={key}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.3 }}
-              className="group overflow-hidden rounded-xl border border-border bg-card transition-all duration-300 hover:scale-[1.03] hover:border-primary/30 hover:shadow-xl"
-            >
-              <div className="relative h-32 overflow-hidden">
-                <img
-                  src={image}
-                  alt={t(lang, `animalCategories.${key}` as never)}
-                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
-                  loading="lazy"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent" />
-              </div>
-              <div className="p-5">
-                <h3 className="text-base font-semibold text-foreground">
-                  {t(lang, `animalCategories.${key}` as never)}
-                </h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                  {t(lang, `animalCategories.${key}Desc` as never)}
-                </p>
-              </div>
-            </motion.div>
+          {categories.map(({ key, image, href }) => (
+            <Link key={key} href={href} className="block cursor-pointer">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.3 }}
+                className="group h-full overflow-hidden rounded-xl border border-border bg-card transition-all duration-300 hover:scale-[1.03] hover:border-primary/30 hover:shadow-xl"
+              >
+                <div className="relative h-32 overflow-hidden">
+                  <img
+                    src={image}
+                    alt={t(lang, `animalCategories.${key}` as never)}
+                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent" />
+                </div>
+                <div className="p-5">
+                  <h3 className="text-base font-semibold text-foreground">
+                    {t(lang, `animalCategories.${key}` as never)}
+                  </h3>
+                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                    {t(lang, `animalCategories.${key}Desc` as never)}
+                  </p>
+                  <div className="mt-4 flex items-center gap-1 text-sm font-medium text-primary opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                    <span>{lang === "si" ? "Več" : "More"}</span>
+                    <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+                  </div>
+                </div>
+              </motion.div>
+            </Link>
           ))}
         </div>
       </div>

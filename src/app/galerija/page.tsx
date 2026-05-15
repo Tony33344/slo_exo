@@ -66,9 +66,9 @@ export default function GalleryPage() {
           <Dialog key={item.id}>
             <DialogTrigger>
               <motion.div
-                layout
                 initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
                 className="group mb-4 cursor-pointer overflow-hidden rounded-lg border border-border bg-card transition-all duration-300 hover:scale-[1.03] hover:border-primary/30 hover:shadow-xl"
               >
                 <img

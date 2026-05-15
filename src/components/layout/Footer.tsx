@@ -30,7 +30,11 @@ export function Footer() {
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
           <div>
-            <h3 className="text-lg font-bold text-primary">SLO-EXO</h3>
+            <img
+              src="/logo slo exo 2.png"
+              alt="SLO-EXO"
+              className="h-auto w-28"
+            />
             <p className="mt-2 text-sm text-muted-foreground">
               {lang === "si"
                 ? "Edini mednarodni sejem eksotičnih živali v Sloveniji"
