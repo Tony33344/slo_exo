@@ -1,0 +1,161 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono);
+  --font-heading: var(--font-geist-sans);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --color-amber: var(--amber);
+  --color-forest: var(--forest);
+  --color-earth: var(--earth);
+  --color-cream: var(--cream);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+:root {
+  --background: #0a0f04;
+  --foreground: #eaf0dc;
+  --card: #11180a;
+  --card-foreground: #eaf0dc;
+  --popover: #11180a;
+  --popover-foreground: #eaf0dc;
+  --primary: #82aa3c;
+  --primary-foreground: #0a0f04;
+  --secondary: #1a250e;
+  --secondary-foreground: #eaf0dc;
+  --muted: #1a2210;
+  --muted-foreground: #8a9a6a;
+  --accent: #2a3a14;
+  --accent-foreground: #eaf0dc;
+  --destructive: #c44d4d;
+  --border: #263318;
+  --input: #1a250e;
+  --ring: #82aa3c;
+  --chart-1: #82aa3c;
+  --chart-2: #a0d641;
+  --chart-3: #4b6916;
+  --chart-4: #8a9a6a;
+  --chart-5: #69931f;
+  --radius: 0.625rem;
+  --sidebar: #0d1208;
+  --sidebar-foreground: #eaf0dc;
+  --sidebar-primary: #82aa3c;
+  --sidebar-primary-foreground: #0a0f04;
+  --sidebar-accent: #1a250e;
+  --sidebar-accent-foreground: #eaf0dc;
+  --sidebar-border: #263318;
+  --sidebar-ring: #82aa3c;
+  --amber: #a0d641;
+  --forest: #4b6916;
+  --earth: #8b5a2b;
+  --cream: #eaf0dc;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  html {
+    @apply font-sans;
+  }
+  ::selection {
+    background-color: rgba(130, 170, 60, 0.35);
+    color: #eaf0dc;
+  }
+}
+
+/* Light theme override */
+html.light-theme {
+  --background: #f6f9ee;
+  --foreground: #1a2210;
+  --card: #ffffff;
+  --card-foreground: #1a2210;
+  --popover: #ffffff;
+  --popover-foreground: #1a2210;
+  --primary: #5c7e24;
+  --primary-foreground: #ffffff;
+  --secondary: #e8f0d8;
+  --secondary-foreground: #1a2210;
+  --muted: #e8eedf;
+  --muted-foreground: #5a6b40;
+  --accent: #d4e4b8;
+  --accent-foreground: #1a2210;
+  --destructive: #c44d4d;
+  --border: #d0dac0;
+  --input: #e8f0d8;
+  --ring: #5c7e24;
+  --sidebar: #eef2e4;
+  --sidebar-foreground: #1a2210;
+  --sidebar-primary: #5c7e24;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #e8f0d8;
+  --sidebar-accent-foreground: #1a2210;
+  --sidebar-border: #d0dac0;
+  --sidebar-ring: #5c7e24;
+  --amber: #7a9e32;
+  --forest: #4b6916;
+  --earth: #8b5a2b;
+  --cream: #1a2210;
+}
+
+html.light-theme ::selection {
+  background-color: rgba(92, 126, 36, 0.25);
+  color: #1a2210;
+}
+
+/* Hero overlay: dark mode uses theme bg, light mode uses dark tint */
+.hero-overlay {
+  background: linear-gradient(to bottom, rgba(10, 15, 4, 0.55), rgba(10, 15, 4, 0.40), rgba(10, 15, 4, 0.60));
+}
+html.light-theme .hero-overlay {
+  background: linear-gradient(to bottom, rgba(20, 30, 10, 0.50), rgba(20, 30, 10, 0.35), rgba(20, 30, 10, 0.55));
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
