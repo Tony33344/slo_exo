@@ -13,6 +13,7 @@ export const translations = {
       sponsors: "Pokrovitelji",
       contact: "Kontakt",
       media: "Za medije",
+      shop: "Trgovina",
       legal: "Pravni pouk",
     },
     hero: {
@@ -168,6 +169,50 @@ export const translations = {
       success: "Hvala! Vaše sporočilo je bilo poslano.",
       error: "Prišlo je do napake. Poskusite znova.",
     },
+    shop: {
+      title: "SLO-EXO Trgovina",
+      subtitle: "Obleci se v slogu ljubiteljev eksotičnih živali",
+      description: "Na voljo pred, med in po sejmu. Naročila pošljemo na vaš naslov ali prevzamete na sejmu.",
+      buyNow: "Naroči zdaj",
+      preOrder: "Prednaročilo",
+      preOrderNote: "Prednaročila so odprta do 3. oktobra 2026.",
+      shipping: "Pošiljanje po Sloveniji in v tujino.",
+      pickup: "Osebni prevzem na sejmu v Mariboru.",
+      bundleNote: "Paket vključuje majico, skodelico in poster po znižani ceni.",
+      contactOrder: "Za naročilo nam pišite na slo.exo@gmail.com",
+      products: {
+        shirtBlack: {
+          name: "SLO-EXO Classic majica",
+          desc: "Črna majica z zelenim logotipom. 100% bombaž, udoben kroj.",
+          price: "25 €",
+        },
+        shirtGreen: {
+          name: "SLO-EXO Nature majica",
+          desc: "Zelena majica z logotipom, navdihnjena z naravo. 100% bombaž.",
+          price: "25 €",
+        },
+        shirtWhite: {
+          name: "SLO-EXO White majica",
+          desc: "Bela majica z minimalističnim logotipom. 100% bombaž.",
+          price: "25 €",
+        },
+        mug: {
+          name: "SLO-EXO skodelica",
+          desc: "Keramična skodelica z logotipom. Za kavo ali čaj med opazovanjem živali.",
+          price: "15 €",
+        },
+        bundle: {
+          name: "SLO-EXO Fan paket",
+          desc: "Vse kar potrebuje pravi ljubitelj: majica + skodelica + poster.",
+          price: "55 €",
+        },
+        poster: {
+          name: "SLO-EXO poster",
+          desc: "A3 poster z logotipom za okrasitev terarija ali sobe.",
+          price: "10 €",
+        },
+      },
+    },
     floatingContact: {
       call: "Pokliči nas",
       whatsapp: "WhatsApp",
@@ -185,6 +230,7 @@ export const translations = {
       sponsors: "Sponsors",
       contact: "Contact",
       media: "For Media",
+      shop: "Shop",
       legal: "Legal Notice",
     },
     hero: {
@@ -339,6 +385,50 @@ export const translations = {
       submit: "Submit registration",
       success: "Thank you! Your message has been sent.",
       error: "An error occurred. Please try again.",
+    },
+    shop: {
+      title: "SLO-EXO Shop",
+      subtitle: "Wear the style of exotic animal lovers",
+      description: "Available before, during and after the fair. We ship to your address or you pick up at the fair.",
+      buyNow: "Order now",
+      preOrder: "Pre-order",
+      preOrderNote: "Pre-orders are open until October 3, 2026.",
+      shipping: "Shipping across Slovenia and abroad.",
+      pickup: "Personal pickup at the fair in Maribor.",
+      bundleNote: "Bundle includes a t-shirt, mug and poster at a discounted price.",
+      contactOrder: "To order, email us at slo.exo@gmail.com",
+      products: {
+        shirtBlack: {
+          name: "SLO-EXO Classic T-Shirt",
+          desc: "Black t-shirt with green logo. 100% cotton, comfortable fit.",
+          price: "25 €",
+        },
+        shirtGreen: {
+          name: "SLO-EXO Nature T-Shirt",
+          desc: "Green t-shirt with logo, nature-inspired. 100% cotton.",
+          price: "25 €",
+        },
+        shirtWhite: {
+          name: "SLO-EXO White T-Shirt",
+          desc: "White t-shirt with minimalist logo. 100% cotton.",
+          price: "25 €",
+        },
+        mug: {
+          name: "SLO-EXO Mug",
+          desc: "Ceramic mug with logo. For coffee or tea while observing your animals.",
+          price: "15 €",
+        },
+        bundle: {
+          name: "SLO-EXO Fan Bundle",
+          desc: "Everything a true fan needs: t-shirt + mug + poster.",
+          price: "55 €",
+        },
+        poster: {
+          name: "SLO-EXO Poster",
+          desc: "A3 poster with logo to decorate your terrarium or room.",
+          price: "10 €",
+        },
+      },
     },
     floatingContact: {
       call: "Call us",

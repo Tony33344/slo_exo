@@ -24,6 +24,7 @@ export function Header() {
     { href: "/obiskovalci/", label: t(lang, "nav.visitors") },
     { href: "/razstavljalci/", label: t(lang, "nav.exhibitors") },
     { href: "/galerija/", label: t(lang, "nav.gallery") },
+    { href: "/trgovina/", label: t(lang, "nav.shop") },
     { href: "/o-nas/", label: t(lang, "nav.about") },
     { href: "/pokrovitelji/", label: t(lang, "nav.sponsors") },
     { href: "/kontakt/", label: t(lang, "nav.contact") },
