@@ -4,8 +4,10 @@ import { useLanguage } from "@/lib/i18n/language-context";
 import { t } from "@/lib/i18n/translations";
 import { Card, CardContent } from "@/components/ui/card";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
-import { MapPin, Ticket, CheckCircle } from "lucide-react";
+import { MapPin, Ticket, CheckCircle, Footprints, Wallet, MessageCircle, Search, Sunrise, ArrowRight } from "lucide-react";
+import Link from "next/link";
 
 const tickets = [
   { key: "adult", price: "€8" },
@@ -18,40 +20,74 @@ const tickets = [
 const faqItems = [
   {
     q: "Kdaj in kje poteka sejem?",
-    a: "Sejem SLO-EXO 2026 bo potekal 10. oktobra 2026 v Festivalni dvorani Lent v Mariboru.",
+    a: "Sejem SLO-EXO 2026 bo potekal 10. oktobra 2026 v Festivalni dvorani Lent v Mariboru. Odprt je od 9:00 do 17:00.",
   },
   {
     q: "Ali je sejem primeren za otroke?",
-    a: "Da, sejem je primeren za otroke starejše od 3 let. Pod starostjo 4 let je vstop brezplačen.",
+    a: "Da, sejem je primeren za otroke starejše od 3 let. Pod starostjo 4 let je vstop brezplačen. Priporočamo, da otroke spremljajo odrasli, saj so na voljo žive živali.",
   },
   {
     q: "Ali lahko na sejmu kupim živali?",
-    a: "Da, razstavljalci prodajajo različne eksotične živali, vendar bodite pozorni na zakonodajo o nakupu in prenosu živali.",
+    a: "Da, razstavljalci prodajajo različne eksotične živali, vendar bodite pozorni na zakonodajo o nakupu in prenosu živali. Za nekatere vrste je potrebno dovoljenje.",
   },
   {
     q: "Ali je na voljo parkirišče?",
-    a: "V bližini Festivalne dvorane Lent so na voljo javna parkirišča.",
+    a: "V bližini Festivalne dvorane Lent so na voljo javna parkirišča. Priporočamo, da pridete zgodaj, saj so mesta omejena.",
+  },
+  {
+    q: "Ali lahko prinesem svojo žival na sejem?",
+    a: "Osebne živali na sejem niso dovoljene, razen če ste registriran razstavljalec. To je za varnost vseh prisotnih živali.",
+  },
+  {
+    q: "Ali je na sejmu možno plačati s kartico?",
+    a: "Večina razstavljalcev sprejema gotovino. Nekateri sprejemajo tudi kartice, vendar priporočamo, da imate pri sebi tudi gotovino.",
+  },
+  {
+    q: "Ali so na sejmu na voljo žive hrane in oprema?",
+    a: "Da, poleg živali boste našli tudi živo hrano (cvrčki, miši), terarije, akvarije, razsvetljavo, substrat in literaturo.",
+  },
+  {
+    q: "Ali sejem poteka tudi ob dežju?",
+    a: "Da, sejem poteka v zaprtih prostorih Festivalne dvorane Lent, zato vreme ne vpliva na potek dogodka.",
   },
 ];
 
 const faqItemsEn = [
   {
     q: "When and where is the fair held?",
-    a: "SLO-EXO 2026 will take place on October 10, 2026 at Festivalna dvorana Lent in Maribor.",
+    a: "SLO-EXO 2026 will take place on October 10, 2026 at Festivalna dvorana Lent in Maribor. Open from 9:00 AM to 5:00 PM.",
   },
   {
     q: "Is the fair suitable for children?",
-    a: "Yes, the fair is suitable for children over the age of 3. Entry is free for children under 4.",
+    a: "Yes, the fair is suitable for children over the age of 3. Entry is free for children under 4. We recommend adult supervision as live animals are present.",
   },
   {
     q: "Can I buy animals at the fair?",
-    a: "Yes, exhibitors sell various exotic animals, but please be aware of legislation regarding purchase and transport of animals.",
+    a: "Yes, exhibitors sell various exotic animals, but please be aware of legislation regarding purchase and transport of animals. Some species require permits.",
   },
   {
     q: "Is parking available?",
-    a: "Public parking is available near Festivalna dvorana Lent.",
+    a: "Public parking is available near Festivalna dvorana Lent. We recommend arriving early as spaces are limited.",
+  },
+  {
+    q: "Can I bring my own pet to the fair?",
+    a: "Personal pets are not allowed at the fair unless you are a registered exhibitor. This is for the safety of all animals present.",
+  },
+  {
+    q: "Can I pay by card at the fair?",
+    a: "Most exhibitors accept cash. Some also accept cards, but we recommend bringing cash as well.",
+  },
+  {
+    q: "Is live food and equipment available?",
+    a: "Yes, besides animals you will also find live food (crickets, mice), terrariums, aquariums, lighting, substrate and literature.",
+  },
+  {
+    q: "Does the fair happen in bad weather?",
+    a: "Yes, the fair takes place indoors at Festivalna dvorana Lent, so weather does not affect the event.",
   },
 ];
+
+const tipIcons = [Footprints, Wallet, MessageCircle, Search, Sunrise];
 
 export default function VisitorsPage() {
   const { lang } = useLanguage();
@@ -67,6 +103,49 @@ export default function VisitorsPage() {
           {t(lang, "visitors.intro")}
         </p>
       </motion.div>
+
+      {/* First-Timer Guide Banner */}
+      <motion.section
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        className="mt-12 rounded-2xl border border-border bg-gradient-to-br from-primary/10 to-primary/5 p-8 sm:p-10"
+      >
+        <div className="flex flex-col items-start gap-6 sm:flex-row sm:items-center sm:justify-between">
+          <div>
+            <h2 className="text-2xl font-bold text-foreground">{t(lang, "firstTimer.title")}</h2>
+            <p className="mt-2 max-w-xl text-muted-foreground">{t(lang, "firstTimer.subtitle")}</p>
+          </div>
+          <Link href="/pogosta-vprasanja/">
+            <Button variant="default" size="lg" className="gap-2">
+              {t(lang, "firstTimer.cta")}
+              <ArrowRight className="h-4 w-4" />
+            </Button>
+          </Link>
+        </div>
+
+        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+          {[1, 2, 3, 4, 5].map((i) => {
+            const Icon = tipIcons[i - 1];
+            return (
+              <div
+                key={i}
+                className="flex flex-col gap-3 rounded-xl border border-border bg-card p-4"
+              >
+                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10">
+                  <Icon className="h-5 w-5 text-primary" />
+                </div>
+                <h3 className="text-sm font-semibold text-foreground">
+                  {t(lang, `firstTimer.tip${i}Title` as never)}
+                </h3>
+                <p className="text-sm text-muted-foreground">
+                  {t(lang, `firstTimer.tip${i}Desc` as never)}
+                </p>
+              </div>
+            );
+          })}
+        </div>
+      </motion.section>
 
       <section className="mt-16 space-y-8">
         <div>
@@ -193,9 +272,17 @@ export default function VisitorsPage() {
       </section>
 
       <section className="mt-16">
-        <h2 className="text-2xl font-bold text-foreground">{t(lang, "visitors.faqTitle")}</h2>
+        <div className="flex items-center justify-between">
+          <h2 className="text-2xl font-bold text-foreground">{t(lang, "visitors.faqTitle")}</h2>
+          <Link
+            href="/pogosta-vprasanja/"
+            className="text-sm font-medium text-primary hover:underline"
+          >
+            {lang === "si" ? "Vsa vprašanja →" : "All questions →"}
+          </Link>
+        </div>
         <Accordion className="mt-6">
-          {faqs.map((item, i) => (
+          {faqs.slice(0, 5).map((item, i) => (
             <AccordionItem key={i} value={`faq-${i}`} className="border-border">
               <AccordionTrigger className="text-left text-foreground hover:text-primary">
                 {item.q}

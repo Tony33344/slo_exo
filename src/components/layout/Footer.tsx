@@ -4,7 +4,10 @@ import Link from "next/link";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { t } from "@/lib/i18n/translations";
 import { Separator } from "@/components/ui/separator";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 import { Mail, Phone } from "lucide-react";
+import { useState } from "react";
 
 function FacebookIcon({ className }: { className?: string }) {
   return (
@@ -24,6 +27,8 @@ function InstagramIcon({ className }: { className?: string }) {
 
 export function Footer() {
   const { lang } = useLanguage();
+  const [email, setEmail] = useState("");
+  const [subscribed, setSubscribed] = useState(false);
 
   return (
     <footer className="border-t border-border bg-muted/30">
@@ -55,6 +60,11 @@ export function Footer() {
               <li>
                 <Link href="/galerija/" className="text-muted-foreground hover:text-foreground">
                   {t(lang, "nav.gallery")}
+                </Link>
+              </li>
+              <li>
+                <Link href="/blog/" className="text-muted-foreground hover:text-foreground">
+                  Blog
                 </Link>
               </li>
             </ul>
@@ -113,6 +123,39 @@ export function Footer() {
               </li>
             </ul>
           </div>
+        </div>
+
+        <div className="mt-8 rounded-xl border border-border bg-card p-6 sm:p-8">
+          <div className="flex flex-col items-center gap-6 text-center sm:flex-row sm:text-left">
+            <div className="flex-1">
+              <h3 className="text-lg font-semibold text-foreground">{t(lang, "newsletter.title")}</h3>
+              <p className="mt-1 text-sm text-muted-foreground">{t(lang, "newsletter.description")}</p>
+            </div>
+            <form
+              className="flex w-full max-w-md flex-col gap-2 sm:flex-row"
+              onSubmit={(e) => {
+                e.preventDefault();
+                if (email) setSubscribed(true);
+              }}
+            >
+              {!subscribed ? (
+                <>
+                  <Input
+                    type="email"
+                    placeholder={t(lang, "newsletter.placeholder")}
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                    className="flex-1"
+                  />
+                  <Button type="submit">{t(lang, "newsletter.cta")}</Button>
+                </>
+              ) : (
+                <p className="w-full text-sm font-medium text-primary py-2">{t(lang, "newsletter.success")}</p>
+              )}
+            </form>
+          </div>
+          <p className="mt-3 text-center text-xs text-muted-foreground sm:text-left">{t(lang, "newsletter.privacy")}</p>
         </div>
 
         <Separator className="my-8" />
