@@ -128,12 +128,7 @@ export default function Article1Page() {
           </span>
         </div>
 
-        <img
-          src="/hero 2Reptile-iguana-herbivorous-Green-Lizzard-HD-Wallpaper-for-Mobile-phones-Tablet-and-PC.jpg"
-          alt={t(lang, "blog.article1Title")}
-          className="mt-8 w-full rounded-xl object-cover aspect-video"
-        />
-        <h1 className="mt-8 text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+        <h1 className="mt-4 text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
           {t(lang, "blog.article1Title")}
         </h1>
 
