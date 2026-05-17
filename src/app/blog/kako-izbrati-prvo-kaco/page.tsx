@@ -147,7 +147,8 @@ export default function Article2Page() {
           </span>
         </div>
 
-        <h1 className="mt-4 text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+        <img src="/hero9Green-Snake-Bothriechis-marchi-National-Park-Cusuco-Sierra-del-Merendón-Honduras-Central-America-HD-Wallpapers-for-mobile-phones-2560x1600.jpg" alt={t(lang, "blog.article2Title")} className="mt-8 w-full rounded-xl object-cover aspect-video" />
+        <h1 className="mt-8 text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
           {t(lang, "blog.article2Title")}
         </h1>
 
