@@ -100,7 +100,7 @@ export default function VisitorsPage() {
         <img
           src="/hero4Reptiles-Green-iguanas-lizard-charming-creatures-in-the-gardens-of-Florida-Desktop-HD-Wallpaper-for-mobile-phones-Tablet-and-PC.jpg"
           alt={t(lang, "visitors.title")}
-          className="absolute inset-0 h-full w-full object-cover object-top"
+          className="absolute inset-0 h-full w-full object-cover" style={{ objectPosition: '60% center' }}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent" />
         <div className="relative mx-auto flex h-full max-w-7xl flex-col justify-end px-4 pb-10 sm:px-6 lg:px-8">

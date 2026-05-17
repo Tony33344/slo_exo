@@ -28,6 +28,7 @@ export function Header() {
     { href: "/trgovina/", label: t(lang, "nav.shop") },
     { href: "/o-nas/", label: t(lang, "nav.about") },
     { href: "/pokrovitelji/", label: t(lang, "nav.sponsors") },
+    { href: "/za-medije/", label: lang === "si" ? "Za medije" : "Media" },
     { href: "/kontakt/", label: t(lang, "nav.contact") },
   ];
 

@@ -28,7 +28,7 @@ export default function ExhibitorsPage() {
   return (
     <div>
       <section className="relative h-64 sm:h-[500px] overflow-hidden border-b border-border">
-        <img src="/hero6.jpg" alt={t(lang, "exhibitors.title")} className="absolute inset-0 h-full w-full object-cover object-center" />
+        <img src="/hero6.jpg" alt={t(lang, "exhibitors.title")} className="absolute inset-0 h-full w-full object-cover" style={{ objectPosition: '50% 30%' }} />
         <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent" />
         <div className="relative mx-auto flex h-full max-w-7xl flex-col justify-end px-4 pb-10 sm:px-6 lg:px-8">
           <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }}>
