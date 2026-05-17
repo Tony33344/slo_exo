@@ -73,7 +73,7 @@ export function HeroSection() {
           className="mt-10 flex flex-wrap justify-center gap-3"
         >
           <Button asChild size="lg" className="gap-2">
-            <Link href="/obiskovalci/">
+            <Link href="/vstopnice/">
               {t(lang, "hero.ctaTickets")}
               <ArrowRight className="h-4 w-4" />
             </Link>

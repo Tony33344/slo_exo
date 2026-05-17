@@ -8,12 +8,18 @@ export default function AboutPage() {
   const { lang } = useLanguage();
 
   return (
-    <div className="mx-auto max-w-4xl px-4 py-16 sm:px-6 lg:px-8">
-      <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
-        <h1 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-          {t(lang, "about.title")}
-        </h1>
-      </motion.div>
+    <div>
+      <section className="relative h-64 sm:h-[500px] overflow-hidden border-b border-border">
+        <img src="/hero4.jpg" alt={t(lang, "about.title")} className="absolute inset-0 h-full w-full object-cover object-center" />
+        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent" />
+        <div className="relative mx-auto flex h-full max-w-7xl flex-col justify-end px-4 pb-10 sm:px-6 lg:px-8">
+          <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }}>
+            <h1 className="text-3xl font-bold tracking-tight text-foreground sm:text-5xl">{t(lang, "about.title")}</h1>
+            <p className="mt-3 text-lg text-muted-foreground">{lang === "si" ? "Društvo ljubiteljev eksotičnih živali iz Maribora" : "Association of Exotic Animal Lovers from Maribor"}</p>
+          </motion.div>
+        </div>
+      </section>
+      <div className="mx-auto max-w-4xl px-4 py-16 sm:px-6 lg:px-8">
 
       <section className="mt-12">
         <h2 className="text-2xl font-bold text-foreground">{lang === "si" ? "O društvu STALGO exotic" : "About STALGO exotic"}</h2>
@@ -34,13 +40,33 @@ export default function AboutPage() {
       </section>
 
       <section className="mt-12">
+        <h2 className="text-2xl font-bold text-foreground">{lang === "si" ? "STALGO exotic — Naš namen" : "STALGO exotic — Our Mission"}</h2>
+        <p className="mt-4 leading-relaxed text-muted-foreground">
+          {lang === "si"
+            ? "V zadnjih letih se je v Sloveniji razširil trend eksotičnih hišnih ljubljenčkov. Skrbi nas, da novi zakoni ne bi temeljili na napačnih predpostavkah — primer slabe prakse je Avstrija, ki je dobila prepoved prodaje plazilcev, ker so akterji prepozno ukrepali. Skupaj z anketo o popisu eksotičnih živali v Sloveniji prispevamo k razumevanju realnega obsega tega hobija."
+            : "In recent years, the trend of exotic pets has grown in Slovenia. We are concerned that new laws may be based on incorrect assumptions — a poor example is Austria, which ended up with a ban on reptile sales because stakeholders acted too late. Together with the exotic animal census survey, we contribute to understanding the real scale of this hobby."}
+        </p>
+        <a
+          href="https://stalgo-exotic.si/popis-eksoticnih-zivali"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-4 inline-block rounded-lg border border-primary bg-primary/10 px-4 py-2 text-sm font-medium text-primary hover:bg-primary/20 transition-colors"
+        >
+          {lang === "si" ? "Izpolni anketo o eksotičnih živalih →" : "Fill in the exotic animal survey →"}
+        </a>
+      </section>
+
+      <section className="mt-12">
         <h2 className="text-2xl font-bold text-foreground">{lang === "si" ? "Kontakt" : "Contact"}</h2>
         <div className="mt-4 space-y-2 text-muted-foreground">
           <p>📞 +386 (0)40 744 882</p>
           <p>✉️ slo.exo@gmail.com</p>
-          <p>📍 Festivalna dvorana Lent, Loška 13, Maribor</p>
+          <p>✉️ info@stalgo-exotic.si</p>
+          <p>📍 Preradovičeva ulica 4, 2000 Maribor</p>
+          <p>📍 {lang === "si" ? "Sejem: Festivalna dvorana Lent, Loška 13, Maribor" : "Fair venue: Festivalna dvorana Lent, Loška 13, Maribor"}</p>
         </div>
       </section>
+    </div>
     </div>
   );
 }

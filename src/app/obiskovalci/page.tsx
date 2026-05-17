@@ -94,15 +94,36 @@ export default function VisitorsPage() {
   const faqs = lang === "si" ? faqItems : faqItemsEn;
 
   return (
-    <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-      <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
-        <h1 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-          {t(lang, "visitors.title")}
-        </h1>
-        <p className="mt-4 max-w-2xl text-lg text-muted-foreground">
-          {t(lang, "visitors.intro")}
-        </p>
-      </motion.div>
+    <div>
+      {/* Hero banner */}
+      <section className="relative h-64 sm:h-[500px] overflow-hidden border-b border-border">
+        <img
+          src="/hero4Reptiles-Green-iguanas-lizard-charming-creatures-in-the-gardens-of-Florida-Desktop-HD-Wallpaper-for-mobile-phones-Tablet-and-PC.jpg"
+          alt={t(lang, "visitors.title")}
+          className="absolute inset-0 h-full w-full object-cover object-top"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent" />
+        <div className="relative mx-auto flex h-full max-w-7xl flex-col justify-end px-4 pb-10 sm:px-6 lg:px-8">
+          <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }}>
+            <h1 className="text-3xl font-bold tracking-tight text-foreground sm:text-5xl">
+              {t(lang, "visitors.title")}
+            </h1>
+            <p className="mt-3 max-w-xl text-lg text-muted-foreground">
+              {t(lang, "visitors.intro")}
+            </p>
+          </motion.div>
+        </div>
+      </section>
+
+      <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+        <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
+          <h2 className="text-2xl font-bold tracking-tight text-foreground">
+            {t(lang, "firstTimer.title")}
+          </h2>
+          <p className="mt-4 max-w-2xl text-lg text-muted-foreground">
+            {t(lang, "firstTimer.subtitle")}
+          </p>
+        </motion.div>
 
       {/* First-Timer Guide Banner */}
       <motion.section
@@ -292,6 +313,7 @@ export default function VisitorsPage() {
           ))}
         </Accordion>
       </section>
+    </div>
     </div>
   );
 }

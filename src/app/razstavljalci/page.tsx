@@ -26,12 +26,17 @@ export default function ExhibitorsPage() {
   const { lang } = useLanguage();
 
   return (
-    <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-      <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
-        <h1 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-          {t(lang, "exhibitors.title")}
-        </h1>
-      </motion.div>
+    <div>
+      <section className="relative h-64 sm:h-[500px] overflow-hidden border-b border-border">
+        <img src="/hero6.jpg" alt={t(lang, "exhibitors.title")} className="absolute inset-0 h-full w-full object-cover object-center" />
+        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent" />
+        <div className="relative mx-auto flex h-full max-w-7xl flex-col justify-end px-4 pb-10 sm:px-6 lg:px-8">
+          <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }}>
+            <h1 className="text-3xl font-bold tracking-tight text-foreground sm:text-5xl">{t(lang, "exhibitors.title")}</h1>
+          </motion.div>
+        </div>
+      </section>
+      <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
 
       <section className="mt-12 grid gap-8 lg:grid-cols-2">
         <Card className="border-border">
@@ -206,6 +211,7 @@ export default function ExhibitorsPage() {
           </a>
         </div>
       </section>
+    </div>
     </div>
   );
 }
