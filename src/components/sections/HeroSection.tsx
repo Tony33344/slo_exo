@@ -25,6 +25,7 @@ export function HeroSection() {
       <div className="relative mx-auto flex max-w-7xl flex-col items-center px-4 py-20 text-center sm:px-6 sm:py-28 lg:px-8 lg:py-36">
         {/* Logo */}
         <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.7, ease: "easeOut" }}
           className="relative"
@@ -39,6 +40,7 @@ export function HeroSection() {
 
         {/* Tagline */}
         <motion.p
+          initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
           className="mt-6 max-w-2xl text-lg leading-relaxed text-white drop-shadow-md sm:text-xl"
@@ -48,6 +50,7 @@ export function HeroSection() {
 
         {/* Event meta */}
         <motion.div
+          initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.35 }}
           className="mt-6 flex flex-wrap items-center justify-center gap-5 text-sm text-white"
@@ -64,6 +67,7 @@ export function HeroSection() {
 
         {/* CTAs */}
         <motion.div
+          initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.5 }}
           className="mt-10 flex flex-wrap justify-center gap-3"

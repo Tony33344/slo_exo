@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { cookies } from "next/headers";
 import "./globals.css";
 import { LanguageProvider } from "@/lib/i18n/language-context";
 import { ThemeProvider } from "@/lib/theme/theme-context";
@@ -37,19 +38,23 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const cookieStore = await cookies();
+  const langCookie = cookieStore.get("slo-exo-lang")?.value;
+  const initialLang = (langCookie === "si" || langCookie === "en") ? langCookie : "si";
+
   return (
     <html
-      lang="sl"
+      lang={initialLang}
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
         <ThemeProvider>
-          <LanguageProvider>
+          <LanguageProvider initialLang={initialLang as "si" | "en"}>
             <Header />
             <main className="flex-1">{children}</main>
             <Footer />
