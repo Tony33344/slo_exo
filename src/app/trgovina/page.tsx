@@ -52,7 +52,7 @@ export default function ShopPage() {
       {/* Hero banner */}
       <section className="relative overflow-hidden border-b border-border">
         <div
-          className="absolute inset-0 bg-cover bg-[center_35%] bg-no-repeat"
+          className="absolute inset-0 bg-cover bg-[center_78%] bg-no-repeat"
           style={{ backgroundImage: "url('/hero6Exotic-animals-reptiles-Chameleon-that-changes-colors-according-to-the-surroundings-which-it-surrounds-HD-Wallpaper-High-Definition-3840x2400.jpg')" }}
         />
         <div className="hero-overlay absolute inset-0" />
