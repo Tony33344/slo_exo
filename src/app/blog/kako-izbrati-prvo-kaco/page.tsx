@@ -127,34 +127,45 @@ export default function Article2Page() {
   );
 
   return (
-    <article className="mx-auto max-w-3xl px-4 py-16 sm:px-6 lg:px-8">
-      <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
-        <Link href="/blog/">
-          <Button variant="ghost" className="gap-2 pl-0">
-            <ArrowLeft className="h-4 w-4" />
-            {t(lang, "blog.backToBlog")}
-          </Button>
-        </Link>
+    <article>
+      <div className="relative h-64 sm:h-[600px] overflow-hidden border-b border-border">
+        <img
+          src="/hero7Animals-Reptilien-Ball-Pythons-Python-of-Bruma-colored-snake-with-yellow-and-white-4K-Ultra-HD-TV-Wallpaper-for-Desktop-Laptop-Tablet-And-Mobile-Phones-3840x2400.jpg"
+          alt={t(lang, "blog.article2Title")}
+          className="absolute inset-0 h-full w-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
+      </div>
 
-        <div className="mt-6 flex items-center gap-4 text-sm text-muted-foreground">
-          <span className="flex items-center gap-1">
-            <Calendar className="h-4 w-4" />
-            2026-04-10
-          </span>
-          <span className="flex items-center gap-1">
-            <Clock className="h-4 w-4" />
-            6 min
-          </span>
-        </div>
+      <div className="mx-auto max-w-3xl px-4 py-16 sm:px-6 lg:px-8">
+        <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
+          <Link href="/blog/">
+            <Button variant="ghost" className="gap-2 pl-0">
+              <ArrowLeft className="h-4 w-4" />
+              {t(lang, "blog.backToBlog")}
+            </Button>
+          </Link>
 
-        <h1 className="mt-4 text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-          {t(lang, "blog.article2Title")}
-        </h1>
+          <div className="mt-6 flex items-center gap-4 text-sm text-muted-foreground">
+            <span className="flex items-center gap-1">
+              <Calendar className="h-4 w-4" />
+              2026-04-10
+            </span>
+            <span className="flex items-center gap-1">
+              <Clock className="h-4 w-4" />
+              6 min
+            </span>
+          </div>
 
-        <div className="mt-10 space-y-6">
-          {content}
-        </div>
-      </motion.div>
+          <h1 className="mt-4 text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+            {t(lang, "blog.article2Title")}
+          </h1>
+
+          <div className="mt-10 space-y-6">
+            {content}
+          </div>
+        </motion.div>
+      </div>
     </article>
   );
 }
