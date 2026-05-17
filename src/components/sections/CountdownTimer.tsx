@@ -23,9 +23,10 @@ function getTimeLeft() {
 
 export function CountdownTimer() {
   const { lang } = useLanguage();
-  const [timeLeft, setTimeLeft] = useState(getTimeLeft());
+  const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
 
   useEffect(() => {
+    setTimeLeft(getTimeLeft());
     const timer = setInterval(() => {
       setTimeLeft(getTimeLeft());
     }, 1000);
