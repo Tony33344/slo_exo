@@ -25,6 +25,7 @@ export function Header() {
     { href: "/razstavljalci/", label: t(lang, "nav.exhibitors") },
     { href: "/galerija/", label: t(lang, "nav.gallery") },
     { href: "/blog/", label: "Blog" },
+    { href: "/vstopnice/", label: lang === "si" ? "Vstopnice" : "Tickets" },
     { href: "/trgovina/", label: t(lang, "nav.shop") },
     { href: "/o-nas/", label: t(lang, "nav.about") },
     { href: "/pokrovitelji/", label: t(lang, "nav.sponsors") },
