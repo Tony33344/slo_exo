@@ -429,26 +429,27 @@ sequenceDiagram
 
 ```mermaid
 gantt
-    title SLO-EXO Roadmap
+    title SLO-EXO Roadmap — 3-Week Sprint (May 18 – June 8)
     dateFormat  YYYY-MM-DD
-    section Phase 1 (DONE)
-    Public site & content      :done, p1, 2025-10-01, 2026-05-15
-    section Phase 2
-    Supabase + Auth setup      :p2a, 2026-06-01, 14d
-    Historic data import       :p2b, after p2a, 14d
-    Exhibitor portal MVP       :p2c, after p2a, 28d
-    Stripe + invoicing         :p2d, after p2c, 21d
-    Beta with 5 exhibitors     :p2e, after p2d, 14d
-    Public launch              :milestone, after p2e
-    section Phase 3
-    Admin CMS scaffolding      :p3a, 2026-09-01, 21d
-    Page builder + RTE         :p3b, after p3a, 28d
-    Media library              :p3c, after p3a, 21d
-    Shop + ticket managers     :p3d, after p3b, 21d
-    Migration of static pages  :p3e, after p3d, 14d
-    section Polish
-    A11y + perf audit          :p4a, after p3e, 14d
-    SEO + structured data      :p4b, after p3e, 14d
+    section Phase 1 — LIVE
+    Public site & blog/gallery/tickets/media :done, p1, 2025-10-01, 2026-05-18
+    section Phase 1.5 — Polishing (Week 1)
+    Final design QA + banner fixes         :crit, p1x, 2026-05-18, 5d
+    Copy refinement + translation gaps     :p1y, after p1x, 3d
+    Performance & Lighthouse pass          :p1z, after p1x, 3d
+    section Phase 2 — Exhibitor Portal (Weeks 2-3)
+    Supabase + Auth scaffolding            :crit, p2a, 2026-05-25, 4d
+    Historic data import + PDF vault       :p2b, after p2a, 5d
+    Portal dashboard + invoice viewer      :p2c, after p2a, 6d
+    Stripe checkout + booking flow         :p2d, after p2c, 5d
+    Beta with 5 exhibitors                 :milestone, p2e, 2026-06-08
+    section Phase 3 — Admin CMS (Q3 2026)
+    CMS scaffolding                        :p3a, 2026-07-01, 14d
+    Page builder + media library           :p3b, after p3a, 21d
+    Shop + ticket manager                  :p3c, after p3b, 14d
+    Dynamic migration + launch             :milestone, p3d, 2026-09-15
+    section Continuous
+    A11y + SEO + analytics                 :p4a, 2026-06-08, 2026-09-15
 ```
 
 ---

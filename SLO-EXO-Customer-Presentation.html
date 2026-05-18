@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="sl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SLO-EXO — Digitalna Platforma | Predstavitveni osnutek</title>
+<style>
+  :root {
+    --bg: #0a0f0a;
+    --bg2: #0d1410;
+    --card: #121c16;
+    --border: #1e3025;
+    --text: #e6f0e8;
+    --muted: #8fa898;
+    --primary: #4ade80;
+    --primary2: #22c55e;
+    --accent: #fbbf24;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem;
+    background: radial-gradient(ellipse at 50% 20%, #1a2e22 0%, var(--bg) 70%);
+    position: relative;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="60" height="60"><circle cx="30" cy="30" r="1" fill="%234ade80" opacity="0.15"/></svg>');
+    opacity: .4;
+    pointer-events: none;
+  }
+  .hero-content { position: relative; z-index: 1; max-width: 760px; }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: .5rem;
+    background: rgba(74,222,128,.12); color: var(--primary);
+    border: 1px solid rgba(74,222,128,.25);
+    padding: .35rem .9rem; border-radius: 99px; font-size: .82rem; font-weight: 500;
+    margin-bottom: 1.5rem; letter-spacing: .03em;
+  }
+  .hero h1 { font-size: clamp(2.4rem, 5vw, 4.2rem); font-weight: 800; letter-spacing: -.03em; line-height: 1.08; }
+  .hero h1 span { color: var(--primary); }
+  .hero p { font-size: clamp(1rem, 2vw, 1.25rem); color: var(--muted); margin-top: 1.2rem; max-width: 540px; margin-inline: auto; }
+  .hero-cta {
+    margin-top: 2.5rem;
+    display: inline-flex; align-items: center; gap: .6rem;
+    background: var(--primary); color: #052e16; font-weight: 600;
+    padding: .85rem 1.6rem; border-radius: 12px; border: none; cursor: pointer;
+    font-size: 1rem; text-decoration: none; transition: transform .2s, box-shadow .2s;
+    box-shadow: 0 0 30px rgba(74,222,128,.25);
+  }
+  .hero-cta:hover { transform: translateY(-2px); box-shadow: 0 0 50px rgba(74,222,128,.4); }
+  .scroll-hint { position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%); color: var(--muted); font-size: .8rem; animation: bounce 2s infinite; }
+  @keyframes bounce { 0%,100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(8px); } }
+
+  /* SECTIONS */
+  section { padding: 5rem 1.5rem; max-width: 1100px; margin: 0 auto; }
+  .section-label {
+    display: inline-block; font-size: .72rem; font-weight: 600; text-transform: uppercase; letter-spacing: .12em;
+    color: var(--primary); border: 1px solid rgba(74,222,128,.25); padding: .25rem .7rem; border-radius: 6px; margin-bottom: 1rem;
+  }
+  h2 { font-size: clamp(1.6rem, 3vw, 2.4rem); font-weight: 700; letter-spacing: -.02em; margin-bottom: .8rem; }
+  .subtitle { color: var(--muted); font-size: 1.05rem; max-width: 560px; margin-bottom: 2.5rem; }
+
+  /* MINDMAP */
+  .mindmap { display: flex; flex-direction: column; gap: 2rem; position: relative; }
+  .mindmap-node {
+    background: var(--card); border: 1px solid var(--border); border-radius: 16px;
+    padding: 1.5rem 2rem; cursor: pointer; transition: all .3s ease;
+    position: relative; overflow: hidden;
+  }
+  .mindmap-node:hover { border-color: rgba(74,222,128,.4); transform: translateY(-3px); box-shadow: 0 12px 40px rgba(0,0,0,.35); }
+  .mindmap-node.active { border-color: var(--primary); box-shadow: 0 0 40px rgba(74,222,128,.15); }
+  .node-header { display: flex; align-items: center; gap: 1rem; margin-bottom: .5rem; }
+  .node-icon {
+    width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center;
+    font-size: 1.3rem; flex-shrink: 0;
+  }
+  .node-title { font-size: 1.15rem; font-weight: 700; }
+  .node-desc { color: var(--muted); font-size: .92rem; }
+  .node-meta { display: flex; gap: .6rem; margin-top: .6rem; flex-wrap: wrap; }
+  .node-tag {
+    font-size: .7rem; padding: .2rem .55rem; border-radius: 6px; font-weight: 500;
+    background: rgba(74,222,128,.1); color: var(--primary); border: 1px solid rgba(74,222,128,.2);
+  }
+  .node-tag.yellow { background: rgba(251,191,36,.1); color: var(--accent); border-color: rgba(251,191,36,.25); }
+  .node-tag.blue { background: rgba(96,165,250,.1); color: #60a5fa; border-color: rgba(96,165,250,.25); }
+
+  .mindmap-children { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin-top: 1rem; max-height: 0; overflow: hidden; opacity: 0; transition: all .45s ease; }
+  .mindmap-children.open { max-height: 800px; opacity: 1; margin-top: 1.2rem; }
+  .child-card {
+    background: var(--bg2); border: 1px solid var(--border); border-radius: 12px;
+    padding: 1.1rem 1.3rem; font-size: .88rem;
+  }
+  .child-card strong { color: var(--text); display: block; margin-bottom: .2rem; font-size: .92rem; }
+  .child-card span { color: var(--muted); font-size: .82rem; }
+
+  /* TIMELINE */
+  .timeline { position: relative; padding-left: 1.5rem; }
+  .timeline::before {
+    content: ''; position: absolute; left: 5px; top: 6px; bottom: 6px; width: 2px;
+    background: linear-gradient(to bottom, var(--primary), var(--border));
+  }
+  .tl-item { position: relative; padding-bottom: 1.8rem; }
+  .tl-item::before {
+    content: ''; position: absolute; left: -1.28rem; top: 4px; width: 10px; height: 10px;
+    border-radius: 50%; background: var(--primary); border: 2px solid var(--bg);
+    box-shadow: 0 0 0 2px var(--border);
+  }
+  .tl-item.done::before { background: var(--primary2); box-shadow: 0 0 0 2px var(--primary2); }
+  .tl-item.future::before { background: var(--border); box-shadow: 0 0 0 2px var(--border); }
+  .tl-date { font-size: .75rem; font-weight: 600; color: var(--primary); text-transform: uppercase; letter-spacing: .06em; }
+  .tl-title { font-weight: 600; margin-top: .15rem; }
+  .tl-desc { font-size: .88rem; color: var(--muted); margin-top: .2rem; }
+
+  /* VALUE GRID */
+  .value-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.2rem; margin-top: 2rem; }
+  .value-card {
+    background: var(--card); border: 1px solid var(--border); border-radius: 16px;
+    padding: 1.6rem; transition: all .25s;
+  }
+  .value-card:hover { border-color: rgba(74,222,128,.3); transform: translateY(-2px); }
+  .value-card .v-icon { width: 48px; height: 48px; border-radius: 12px; background: rgba(74,222,128,.1); color: var(--primary); display: flex; align-items: center; justify-content: center; font-size: 1.4rem; margin-bottom: 1rem; }
+  .value-card h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: .35rem; }
+  .value-card p { font-size: .88rem; color: var(--muted); }
+
+  /* PHASE CARDS */
+  .phase-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.2rem; margin-top: 2rem; }
+  .phase-card {
+    background: var(--card); border: 1px solid var(--border); border-radius: 18px;
+    padding: 2rem; position: relative; overflow: hidden;
+  }
+  .phase-card .ph-num {
+    position: absolute; top: -10px; right: 16px; font-size: 5.5rem; font-weight: 800;
+    color: rgba(74,222,128,.06); line-height: 1; pointer-events: none;
+  }
+  .phase-card h3 { font-size: 1.15rem; font-weight: 700; margin-bottom: .5rem; }
+  .phase-card ul { list-style: none; margin-top: .8rem; }
+  .phase-card ul li { padding: .35rem 0; font-size: .88rem; color: var(--muted); display: flex; align-items: flex-start; gap: .5rem; }
+  .phase-card ul li::before { content: '✓'; color: var(--primary); font-weight: 700; flex-shrink: 0; }
+  .phase-card.live { border-color: rgba(74,222,128,.3); background: linear-gradient(145deg, var(--card), #142419); }
+  .phase-card.planned { border-color: rgba(96,165,250,.2); background: linear-gradient(145deg, var(--card), #131e2e); }
+
+  /* STATS BAR */
+  .stats-bar {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 1rem;
+    background: var(--card); border: 1px solid var(--border); border-radius: 16px;
+    padding: 1.5rem 2rem; margin: 3rem auto; max-width: 900px;
+  }
+  .stat { text-align: center; }
+  .stat-num { font-size: 1.8rem; font-weight: 800; color: var(--primary); line-height: 1.1; }
+  .stat-label { font-size: .78rem; color: var(--muted); text-transform: uppercase; letter-spacing: .08em; margin-top: .3rem; }
+
+  /* FOOTER CTA */
+  .final-cta {
+    text-align: center; padding: 5rem 1.5rem; background: radial-gradient(ellipse at 50% 50%, #1a2e22 0%, var(--bg) 70%);
+    border-top: 1px solid var(--border);
+  }
+  .final-cta h2 { margin-bottom: .8rem; }
+  .final-cta p { color: var(--muted); max-width: 480px; margin: 0 auto 1.8rem; }
+  .btn-group { display: flex; gap: .8rem; justify-content: center; flex-wrap: wrap; }
+  .btn {
+    padding: .8rem 1.5rem; border-radius: 10px; font-weight: 600; font-size: .92rem;
+    border: none; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: .5rem;
+  }
+  .btn-primary { background: var(--primary); color: #052e16; }
+  .btn-ghost { background: transparent; color: var(--text); border: 1px solid var(--border); }
+  .btn:hover { transform: translateY(-2px); }
+
+  /* UTILS */
+  .center { text-align: center; }
+  .mb1 { margin-bottom: 1rem; }
+  .mb2 { margin-bottom: 2rem; }
+  .mt1 { margin-top: 1rem; }
+  .mt2 { margin-top: 2rem; }
+  .green { color: var(--primary); }
+  .yellow { color: var(--accent); }
+  .blue { color: #60a5fa; }
+  .hidden { display: none; }
+
+  @media (max-width: 640px) {
+    section { padding: 3rem 1rem; }
+    .phase-row, .value-grid { grid-template-columns: 1fr; }
+    .mindmap-children { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero" id="top">
+  <div class="hero-content">
+    <div class="hero-badge">🦎 SLO-EXO Digitalna Platforma</div>
+    <h1>Edini mednarodni sejem<br><span>eksotičnih živali</span> v Sloveniji</h1>
+    <p>Od klasične predstavitve do popolnoma digitalne platforme — v treh fazah do regionalnega voditelja.</p>
+    <a href="#platforma" class="hero-cta">Razišči platformo →</a>
+  </div>
+  <div class="scroll-hint">▼ Pomakni navzdol</div>
+</div>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="stat"><div class="stat-num">27</div><div class="stat-label">Sejemov izvedenih</div></div>
+  <div class="stat"><div class="stat-num">40+</div><div class="stat-label">Razstavljavcev</div></div>
+  <div class="stat"><div class="stat-num">200m²</div><div class="stat-label">Razstavne površine</div></div>
+  <div class="stat"><div class="stat-num">3</div><div class="stat-label">Faze razvoja</div></div>
+</div>
+
+<!-- PLATFORM MINDMAP -->
+<section id="platforma">
+  <div class="center">
+    <span class="section-label">Platforma</span>
+    <h2>Kaj dobite danes — in kaj prihaja</h2>
+    <p class="subtitle center">Kliknite na posamezne faze za podroben vpogled v funkcionalnosti.</p>
+  </div>
+
+  <div class="mindmap">
+
+    <!-- PHASE 1 -->
+    <div class="mindmap-node live" onclick="toggle(this)">
+      <div class="node-header">
+        <div class="node-icon" style="background:rgba(74,222,128,.15);color:var(--primary);">✓</div>
+        <div>
+          <div class="node-title">Faza 1 — Predstavitvena spletna stran <span class="green">(LIVE)</span></div>
+          <div class="node-desc">Moderna, responsivna, dvojezična stran za obiskovalce in razstavljalce.</div>
+        </div>
+      </div>
+      <div class="node-meta">
+        <span class="node-tag">Next.js 15</span>
+        <span class="node-tag">Tailwind</span>
+        <span class="node-tag">Framer Motion</span>
+        <span class="node-tag">Netlify</span>
+      </div>
+      <div class="mindmap-children open">
+        <div class="child-card"><strong>Marketing strani</strong><span>Domov, obiskovalci, razstavljalci, o nas, kontakt, pravni pouk, za medije</span></div>
+        <div class="child-card"><strong>Blog + Galerija</strong><span>Članki s slikami, fotogalerija po letih s predogledom</span></div>
+        <div class="child-card"><strong>Vstopnice</strong><span>Izbira vstopnic, seštevek, rezervacija z obvestilom</span></div>
+        <div class="child-card"><strong>Živalske kategorije</strong><span>Plazilci, pajkovci, glodavci, ribe, rastline, živa hrana, oprema</span></div>
+        <div class="child-card"><strong>Medijski arhiv</strong><span>Povezave do TV, radia in spletnih portalov o sejmu</span></div>
+        <div class="child-card"><strong>SEO + i18n</strong><span>Dvojezičnost (SI/EN), sitemap, optimizirane meta oznake</span></div>
+      </div>
+    </div>
+
+    <!-- PHASE 2 -->
+    <div class="mindmap-node planned" onclick="toggle(this)">
+      <div class="node-header">
+        <div class="node-icon" style="background:rgba(96,165,250,.15);color:#60a5fa;">🔐</div>
+        <div>
+          <div class="node-title">Faza 2 — B2B portal za razstavljalce <span class="blue">(Junij 2026)</span></div>
+          <div class="node-desc">Registracija, zgodovina računov, online plačilo in samopostrežna prijava na sejem.</div>
+        </div>
+      </div>
+      <div class="node-meta">
+        <span class="node-tag blue">Supabase</span>
+        <span class="node-tag blue">Stripe</span>
+        <span class="node-tag blue">Auth</span>
+        <span class="node-tag blue">PDF</span>
+      </div>
+      <div class="mindmap-children">
+        <div class="child-card"><strong>Prijava / Registracija</strong><span>Email + geslo ali magic-link. Obstoječi razstavljavci se lahko "claimajo" preko emaila.</span></div>
+        <div class="child-card"><strong>Nadzorna plošča</strong><span>Pregled naslednjega sejma, status prijave, pretekli nastopi</span></div>
+        <div class="child-card"><strong>Zgodovina računov (2010–2025)</strong><span>Vsi pretekli računi na enem mestu, prenos PDF</span></div>
+        <div class="child-card"><strong>Online rezervacija stojnic</strong><span>Izbira prodajne mize, elektrike, dodatnih vstopnic — vse v enem koraku</span></div>
+        <div class="child-card"><strong>Stripe plačila</strong><span>Plačilo s kartico, Apple Pay, Google Pay. Avtomatsko izdajanje računa</span></div>
+        <div class="child-card"><strong>Dokumenti</strong><span>CITES, transportna dokumentacija, FURS navodila na dosegu roke</span></div>
+      </div>
+    </div>
+
+    <!-- PHASE 3 -->
+    <div class="mindmap-node planned" onclick="toggle(this)">
+      <div class="node-header">
+        <div class="node-icon" style="background:rgba(251,191,36,.15);color:var(--accent);">⚙</div>
+        <div>
+          <div class="node-title">Faza 3 — Admin CMS <span class="yellow">(Q3 2026)</span></div>
+          <div class="node-desc">Vsebino spletne strani upravljate sami — brez razvijalca. Drag & drop, obogateno urejanje besedil.</div>
+        </div>
+      </div>
+      <div class="node-meta">
+        <span class="node-tag yellow">Tiptap RTE</span>
+        <span class="node-tag yellow">Drag & Drop</span>
+        <span class="node-tag yellow">JSONB</span>
+        <span class="node-tag yellow">Supabase</span>
+      </div>
+      <div class="mindmap-children">
+        <div class="child-card"><strong>Urejevalnik strani</strong><span>Dodajanje, urejanje in premikanje blokov kot WordPress — ampak hitreje</span></div>
+        <div class="child-card"><strong>Medijska knjižnica</strong><span>Upload slik in videov, samodejna optimizacija, obrezovanje</span></div>
+        <div class="child-card"><strong>Upravljanje trgovine</strong><span>Dodajanje izdelkov, cen, zalog, kategorij v realnem času</span></div>
+        <div class="child-card"><strong>Upravljanje vstopnic</strong><span>Nove vrste vstopnic, kapacitete, popusti, promo kode</span></div>
+        <div class="child-card"><strong>Uporabniki in vloge</strong><span>Dodajanje sodelavcev z različnimi pravicami dostopa</span></div>
+        <div class="child-card"><strong>Statistika in analitika</strong><span>Prodaja vstopnic, obiskanost, priljubljenost izdelkov, vir obiskovalcev</span></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- TIMELINE -->
+<section id="timeline">
+  <span class="section-label">Časovnica</span>
+  <h2>3-tedenski sprint do konca Faze 1.5 + začetek Faze 2</h2>
+  <p class="subtitle">Trenutno smo v fazi poliranja. Čez tri tedne je razstavljavski portal pripravljen za testiranje.</p>
+
+  <div class="timeline mt2">
+    <div class="tl-item done">
+      <div class="tl-date">MAJ 2026 — Sedaj</div>
+      <div class="tl-title">Faza 1 — LIVE</div>
+      <div class="tl-desc">Celotna predstavitvena stran z blogom, galerijo, vstopnicami, medijskim arhivom in vsemi kategorijami.</div>
+    </div>
+    <div class="tl-item done">
+      <div class="tl-date">18.–23. maj 2026</div>
+      <div class="tl-title">Faza 1.5 — Poliranje</div>
+      <div class="tl-desc">Končni design pregled, popravki besedil, Lighthouse perf ≥95, pristopnost (a11y) pregled.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">25. maj – 1. jun 2026</div>
+      <div class="tl-title">Faza 2 — Razstavljavski portal MVP</div>
+      <div class="tl-desc">Supabase + avtentikacija, uvoz zgodovine, nadzorna plošča, pregled računov.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">1.–8. jun 2026</div>
+      <div class="tl-title">Faza 2 — Stripe + rezervacije</div>
+      <div class="tl-desc">Online plačilo, samodejno izdajanje računov, rezervacija stojnic, beta z 5 razstavljavci.</div>
+    </div>
+    <div class="tl-item future">
+      <div class="tl-date">Jul–Sep 2026</div>
+      <div class="tl-title">Faza 3 — Admin CMS</div>
+      <div class="tl-desc">Samostojno urejanje vsebine, trgovina, vstopnice, medijska knjižnica, analitika.</div>
+    </div>
+  </div>
+</section>
+
+<!-- VALUE -->
+<section id="value">
+  <span class="section-label">Koristi</span>
+  <h2>Zakaj investirati v digitalno platformo?</h2>
+  <p class="subtitle">Vsaka faza prinaša merljive poslovne rezultate — ne le lepšo spletno stran.</p>
+
+  <div class="value-grid">
+    <div class="value-card">
+      <div class="v-icon">🌍</div>
+      <h3>Regionalna prepoznavnost</h3>
+      <p>Edini specializirani sejem v regiji z moderno, profesionalno digitalno prisotnostjo. Pridobitev novih razstavljavcev iz Avstrije, Hrvaške, Italije in Madžarske.</p>
+    </div>
+    <div class="value-card">
+      <div class="v-icon">⏱</div>
+      <h3>Avtomatizacija administracije</h3>
+      <p>Prejšnji računi na dosegu roke, samodejno izdajanje novih, online plačila. Prihranek 15–20 ur administracije na sejem.</p>
+    </div>
+    <div class="value-card">
+      <div class="v-icon">💳</div>
+      <h3>Hitrejša prodaja stojnic</h3>
+      <p>Razstavljavci rezervirajo in plačajo 24/7. Ni več e-mailov in ročnega sledenja. Manj zapolnjenih mest v zadnjem tednu.</p>
+    </div>
+    <div class="value-card">
+      <div class="v-icon">📊</div>
+      <h3>Podatki za odločanje</h3>
+      <p>Kdo obiskuje, katere kategorije zanimajo, koliko vstopnic se proda do konca tedna. Marketing na podlagi številk, ne občutka.</p>
+    </div>
+    <div class="value-card">
+      <div class="v-icon">🔒</div>
+      <h3>GDPR in varnost</h3>
+      <p>Vsi podatki v EU (Frankfurt), šifrirani, z avditnim dnevnikom. Samopostrežni izvoz in brisanje za uporabnike.</p>
+    </div>
+    <div class="value-card">
+      <div class="v-icon">🚀</div>
+      <h3>Samostojnost brez razvijalca</h3>
+      <p>Z Admin CMS v Fazi 3 lahko sami spreminjate besedila, dodajate izdelke, nalagate slike in objavljate novosti.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PHASE CARDS -->
+<section id="phases">
+  <span class="section-label">Investicija v faze</span>
+  <h2>Plačate po fazah — vidite rezultat, preden nadaljujete</h2>
+  <p class="subtitle">Vsaka faza je samostojna. Lahko ustavite kadarkoli. Priporočamo vse tri za največji učinek.</p>
+
+  <div class="phase-row mt2">
+    <div class="phase-card live">
+      <div class="ph-num">1</div>
+      <h3>Faza 1 — Predstavitvena stran</h3>
+      <p style="color:var(--muted);font-size:.88rem;margin-top:.3rem;">Že aktivna. Poudarek na estetiki, hitrosti in SEO.</p>
+      <ul>
+        <li>Responsivna, dark/light tema</li>
+        <li>Dvojezičnost (SI/EN)</li>
+        <li>Blog, galerija, medijski arhiv</li>
+        <li>Vstopnice — izbira in rezervacija</li>
+        <li>Živalske kategorije z vsebino</li>
+        <li>Lighthouse 95+ in SEO pripravljenost</li>
+      </ul>
+    </div>
+    <div class="phase-card planned">
+      <div class="ph-num">2</div>
+      <h3>Faza 2 — B2B portal</h3>
+      <p style="color:var(--muted);font-size:.88rem;margin-top:.3rem;">Junij 2026. Portal za obstoječe in nove razstavljalce.</p>
+      <ul>
+        <li>Prijava z email/geslo ali magic-link</li>
+        <li>Zgodovina računov 2010–2025 (PDF)</li>
+        <li>Online rezervacija stojnic</li>
+        <li>Stripe plačila (kartica, Apple/Google Pay)</li>
+        <li>Samodejno izdajanje računov</li>
+        <li>Dokumentacija (CITES, transport, FURS)</li>
+      </ul>
+    </div>
+    <div class="phase-card planned">
+      <div class="ph-num">3</div>
+      <h3>Faza 3 — Admin CMS</h3>
+      <p style="color:var(--muted);font-size:.88rem;margin-top:.3rem;">Q3 2026. Samostojno upravljanje celotne platforme.</p>
+      <ul>
+        <li>Drag & drop urejevalnik strani</li>
+        <li>Medijska knjižnica z optimizacijo</li>
+        <li>Upravljanje trgovine in zalog</li>
+        <li>Upravljanje vstopnic in popustov</li>
+        <li>Uporabniki in RBAC pravice</li>
+        <li>Statistika, analitika, audit log</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- STACK -->
+<section id="stack">
+  <span class="section-label">Tehnologija</span>
+  <h2>Moderna, vzdrževana in skalabilna tehnologija</h2>
+  <p class="subtitle">Vsaka izbira je opravljena z mislijo na dolgoročno ceno vzdrževanja in zamenljivost razvijalcev.</p>
+
+  <div class="value-grid mt2">
+    <div class="value-card"><div class="v-icon" style="background:rgba(96,165,250,.1);color:#60a5fa;">N</div><h3>Next.js 15</h3><p>React framework z App Router, statičnim generiranjem in hitrimi prehodi strani.</p></div>
+    <div class="value-card"><div class="v-icon" style="background:rgba(168,85,247,.1);color:#a855f7;">S</div><h3>Supabase</h3><p>Postgres, Auth, Storage in Realtime v eni platformi. Odprtokoden, brez vendor lock-in.</p></div>
+    <div class="value-card"><div class="v-icon" style="background:rgba(251,191,36,.1);color:var(--accent);">T</div><h3>Tailwind CSS</h3><p>Utility-first CSS — hitro, konsistentno, majhna končna velikost bundle-a.</p></div>
+    <div class="value-card"><div class="v-icon" style="background:rgba(236,72,153,.1);color:#ec4899;">Str</div><h3>Stripe</h3><p>Najbolj razvijalcu prijazen plačilni procesor. Podpora za SEPA, kartice, Apple/Google Pay.</p></div>
+    <div class="value-card"><div class="v-icon" style="background:rgba(34,197,94,.1);color:var(--primary2);">Res</div><h3>Resend</h3><p>Moderni email API z React Email predlogami. Zanesljiv in poceni.</p></div>
+    <div class="value-card"><div class="v-icon" style="background:rgba(99,102,241,.1);color:#6366f1;">Pl</div><h3>Plausible</h3><p>Zasebnostna analitika brez piškotkov in GDPR skrbi. Enostavna in transparentna.</p></div>
+  </div>
+</section>
+
+<!-- EXTRA IDEAS -->
+<section id="ideas">
+  <span class="section-label">Dodatne ideje</span>
+  <h2>Kaj še lahko dodamo za prednost pred konkurenco</h2>
+  <p class="subtitle">Niso del osnovne ponudbe, ampak so na seznamu za hitro implementacijo po želji.</p>
+
+  <div class="mindmap mt2">
+    <div class="mindmap-node" style="cursor:default;">
+      <div class="node-header">
+        <div class="node-icon" style="background:rgba(251,191,36,.15);color:var(--accent);">💡</div>
+        <div>
+          <div class="node-title">Hitre zmage (1–2 dni dela)</div>
+          <div class="node-desc">Majhne funkcije z velikim vplivom na uporabniško izkušnjo.</div>
+        </div>
+      </div>
+      <div class="mindmap-children open">
+        <div class="child-card"><strong>QR koda za vstopnice</strong><span>Obiskovalcem pošljemo QR kodo, na vhodu jo skenirajo — brez tiskanja.</span></div>
+        <div class="child-card"><strong>Dodaj v koledar</strong><span>En klik za Google/Apple koledar s podrobnostmi sejma.</span></div>
+        <div class="child-card"><strong>Live chat / WhatsApp</strong><span>Potencialni razstavljavci dobijo odgovor v 5 minutah namesto 2 dni.</span></div>
+        <div class="child-card"><strong>Strukturirani podatki</strong><span>Google prikaže dogodek, ceno in lokacijo direktno v rezultatih iskanja.</span></div>
+      </div>
+    </div>
+
+    <div class="mindmap-node mt1" style="cursor:default;">
+      <div class="node-header">
+        <div class="node-icon" style="background:rgba(96,165,250,.15);color:#60a5fa;">🚀</div>
+        <div>
+          <div class="node-title">Srednje projekti (1 teden)</div>
+          <div class="node-desc">Funkcije, ki dvignejo vrednost platforme na naslednji nivo.</div>
+        </div>
+      </div>
+      <div class="mindmap-children open">
+        <div class="child-card"><strong>Interaktivni tloris sejma</strong><span>Klikljiva karta stojnic — vidite, kdo je kje, ali je prosto, rezervirajte direktno.</span></div>
+        <div class="child-card"><strong>Profili razstavljavcev</strong><span>Fotografija, opis, vrste živali, socialni profili — kot mini katalog.</span></div>
+        <div class="child-card"><strong>Fotografski natečaj</strong><span>Obiskovalci naložijo fotografije, glasujejo, zmagovalci na LED zaslonu na sejmu.</span></div>
+        <div class="child-card"><strong>Segmentirane e-novice</strong><span>Zanimanje za plazilce? Dobite samo plazilske novice. Boljši odprtost.</span></div>
+      </div>
+    </div>
+
+    <div class="mindmap-node mt1" style="cursor:default;">
+      <div class="node-header">
+        <div class="node-icon" style="background:rgba(168,85,247,.15);color:#a855f7;">🔮</div>
+        <div>
+          <div class="node-title">Velike vizije (1+ mesec)</div>
+          <div class="node-desc">Funkcije, ki bi SLO-EXO postavile kot digitalnega voditelja v regiji.</div>
+        </div>
+      </div>
+      <div class="mindmap-children open">
+        <div class="child-card"><strong>AR/3D predogled živali</strong><span>Na kategorijah 3D modeli živali, ki jih obiskovalec vidi v svoji sobi prek telefona.</span></div>
+        <div class="child-card"><strong>Letna naročnina na "Exotic Club"</strong><span>Popusti na vstopnice, prednostni dostop do novic, ekskluzivne vsebine.</span></div>
+        <div class="child-card"><strong>Veterinarski in biološki vsebinski center</strong><span>Sodelovanje s strokovnjaki — originalni članki, video predavanja, webinarji.</span></div>
+        <div class="child-card"><strong>Partnerstvo z drugimi sejmi (CEE)</strong><span>Preko platforme se povežete z organizatorji na Hrvaškem, v Avstriji, Italiji.</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<div class="final-cta" id="kontakt">
+  <h2>Pripravljeni na naslednji korak?</h2>
+  <p>Platforma je že živa. V treh tednih dopolnimo Phase 1.5 in začnemo Phase 2 — razstavljavski portal z online plačilom.</p>
+  <div class="btn-group">
+    <a href="mailto:slo.exo@gmail.com" class="btn btn-primary">📧 Kontaktirajte nas</a>
+    <a href="#platforma" class="btn btn-ghost">↺ Ponovno preglej</a>
+  </div>
+  <p style="margin-top:2rem;font-size:.78rem;color:var(--muted);">
+    SLO-EXO Digitalna Platforma — Društvo ljubiteljev eksotičnih živali »STALGO exotic«, Maribor
+  </p>
+</div>
+
+<script>
+  function toggle(el) {
+    const children = el.querySelector('.mindmap-children');
+    if (!children) return;
+    children.classList.toggle('open');
+    el.classList.toggle('active');
+  }
+  // Auto-open first node
+  document.addEventListener('DOMContentLoaded', () => {
+    const first = document.querySelector('.mindmap-node');
+    if (first) first.classList.add('active');
+  });
+</script>
+</body>
+</html>
