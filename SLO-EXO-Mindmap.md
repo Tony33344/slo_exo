@@ -1,199 +1,194 @@
-# SLO-EXO — Complete Platform Mindmap
+# SLO-EXO - Complete Platform Mindmap
 
-> Open this file in any Mermaid viewer (VS Code, GitHub, Obsidian, Mermaid Live Editor) to see the interactive mindmap.
-> **Current features** ✅ | **Phase 2** 🔐 | **Phase 3** ⚙️ | **Bonus ideas** 💡
+> Open in VS Code with "Markdown Preview Mermaid Support" or at https://mermaid.live
 
 ```mermaid
 mindmap
-  root((SLO-EXO<br/>Platform))
-    🟢 Phase 1 — LIVE
-      🏠 Marketing
-        Domovska stran
-        Hero z animacijo
-        Odštevalnik do sejma
-        Kategorije živali
-        O nas
-        Kontakt
-        Pravni pouk
-        Pogosta vprašanja
-      👥 Obiskovalci
-        Cenik vstopnic
-        Vstopnice — izbira + seštevek
-        Rezervacija brez plačila
-        Pregledni cenik za otroke
-        Začetniški vodič
-        Lokacija + parkiranje
-        FAQ
-      🦎 Razstavljalci
-        Cenik stojnic
-        Pravila prodaje
-        CITES navodila
-        FURS / davčne blagajne
-        Transportna dokumentacija
-        Povezave na zakonodajo
-        Prijava na sejem
-        Seznam razstavljavcev
-      📝 Blog
-        Terarij za začetnike
-        Kako izbrati prvo kačo
-        Hero banneri s slikami
-      🖼 Galerija
-        Filtriranje po letih
-        Dialog predogled
-      🎫 Vstopnice
-        Izbor vrste + količina
-        Seštevek v realnem času
-        Rezervacija
-        Opomba: plačilo na sejmu
-      🛒 Trgovina
-        Kategorije izdelkov
-        Proizvodi s slikami
-      📰 Za medije
+  root((SLO-EXO Platform))
+    Phase 1 LIVE
+      Marketing
+        Homepage with hero animation
+        Countdown timer to fair
+        Animal categories grid
+        About us page
+        Contact page
+        Legal info
+        FAQ accordion
+      Visitors
+        Ticket pricing
+        Ticket selection + summary
+        Reservation without payment
+        Kids pricing
+        First timer guide
+        Location and parking
+        Visitor FAQ
+      Exhibitors
+        Booth pricing table
+        Animal sales rules
+        CITES guidelines
+        FURS tax register info
+        Transport documents
+        Legislation links
+        Registration form
+        Exhibitor list
+      Blog
+        Terrarium for beginners
+        How to choose first snake
+        Hero banners with images
+      Gallery
+        Filter by year
+        Lightbox preview
+      Tickets
+        Type selection + quantity
+        Real-time price summary
+        Reservation form
+        Payment at fair note
+      Shop
+        Product categories
+        Product cards with images
+      Media
         Press kit download
-        Sporočila za javnost
-        Medijski arhiv
-          Nova24TV
+        Press releases
+        Media archive
+          Nova24TV article
           YouTube video
-          Toti Radio intervju
-      🌐 i18n + SEO
-        Slovensko / Angleško
+          Toti Radio interview
+      i18n and SEO
+        Slovenian and English
         Sitemap
-        Meta opisi
-      🎨 Design
-        Dark/Light tema
+        Meta descriptions
+      Design System
+        Dark and light theme
         Tailwind CSS
-        Framer Motion animacije
-        Responsive
-        Shadcn/ui komponente
-        Lucide ikone
-    🔵 Phase 2 — Portal Razstavljalcev
-      🔑 Auth
-        Registracija
-        Prijava z geslom
-        Magic link
-        OAuth Google
-        2FA
-      📊 Dashboard
-        Status prijave na sejem
-        Zgodovina nastopov
-        Pretekli računi 2010–2025
+        Framer Motion animations
+        Fully responsive
+        Shadcn UI components
+        Lucide icons
+    Phase 2 B2B Portal
+      Authentication
+        Registration
+        Password login
+        Magic link login
+        Google OAuth
+        Two-factor auth
+      Dashboard
+        Registration status for fair
+        History of past fairs
+        Historic invoices 2010 to 2025
         PDF download
-        Profil podjetja
-      🏢 Booth Booking
-        Izbira prodajne mize
-        Elektrika
-        Dodatne vstopnice
-        Kalendar razpoložljivosti
+        Company profile
+      Booth Booking
+        Table selection
+        Electricity option
+        Extra tickets
+        Availability calendar
         Checkout wizard
-      💳 Stripe Payments
-        Kartično plačilo
-        Apple Pay / Google Pay
-        SEPA direktna bremenitev
-        Samodejni PDF račun
-        Email potrdilo
+      Stripe Payments
+        Credit card payment
+        Apple Pay and Google Pay
+        SEPA direct debit
+        Auto-generated PDF invoice
+        Email confirmation
         Stripe Customer Portal
-      📨 Notifications
-        Email potrdila
-        Opomniki pred sejmom
-        Status plačila
-        Newsletter segmentacija
-      📁 Document Vault
-        CITES certifikati
-        Transportna dokumentacija
-        FURS navodila
-        Zgodovina računov
-    🟡 Phase 3 — Admin CMS
-      📝 Page Builder
-        Drag-drop bloki
-        Hero, tekst, galerija, CTA, FAQ, cenik
-        Predogled v realnem času
-        Publish / Draft / Schedule
-      🖼 Media Library
-        Upload slik in videov
-        Avtomatska optimizacija WebP/AVIF
-        Obrezovanje in resize
-        Alt text in SEO metadata
-        Mapa struktura
-      🛍 Shop Manager
-        Dodaj/Uredi izdelek
-        Zaloge in cene
-        Kategorije in oznake
-        Popusti in promo kode
-        Status: na zalogi/razprodano
-      🎫 Ticket Manager
-        Vrste vstopnic
-        Cene in kapaciteta
-        Število prodanih
-        Promo kode
-        Bundle paketi
-        QR koda generacija
-      📰 Blog Manager
-        Ustvari/uredi objavo
-        Kategorije in oznake
-        SEO naslov in opis
-        Nacrtovana objava
-      🤝 Sponsor Manager
-        Logotipi in povezave
-        Nivoji sponzorstva
-        Trajanje pogodbe
-      🦎 Category Manager
-        Urejanje vsebine po kategorijah
-        Dodajanje slik in opisov
-      🌍 i18n Editor
-        Side-by-side SI/EN
-        Masovni prevod
-        Napredovalni prikaz
-      👤 User & Roles
-        Admin, Editor, Viewer
-        RBAC pravice
-      ⚙️ Site Settings
+      Notifications
+        Email confirmations
+        Fair reminders
+        Payment status updates
+        Segmented newsletters
+      Document Vault
+        CITES certificates
+        Transport documentation
+        FURS guidelines
+        Invoice history
+    Phase 3 Admin CMS
+      Page Builder
+        Drag and drop blocks
+        Hero, text, gallery, CTA, FAQ, pricing
+        Real-time preview
+        Publish, draft, schedule
+      Media Library
+        Image and video upload
+        Auto WebP and AVIF optimization
+        Crop and resize
+        Alt text and SEO metadata
+        Folder structure
+      Shop Manager
+        Add and edit products
+        Stock and prices
+        Categories and tags
+        Discounts and promo codes
+        In stock and sold out status
+      Ticket Manager
+        Ticket types
+        Prices and capacity
+        Sold count
+        Promo codes
+        Bundle packages
+        QR code generation
+      Blog Manager
+        Create and edit posts
+        Categories and tags
+        SEO title and description
+        Scheduled publishing
+      Sponsor Manager
+        Logos and links
+        Sponsorship tiers
+        Contract duration
+      Category Manager
+        Edit content per animal category
+        Add images and descriptions
+      i18n Editor
+        Side by side SI and EN
+        Bulk translation
+        Progress view
+      Users and Roles
+        Admin, Editor, Viewer roles
+        RBAC permissions
+      Site Settings
         SEO defaults
-        Kontaktni podatki
-        Hero nastavitve
-        Tema privzete barve
-      📊 Analytics & Audit
-        Prodaja vstopnic
-        Obiskanost strani
-        Popularnost izdelkov
-        Audit log — kdo je kaj spremenil
-    💡 Bonus — Hitre Zmage
-      📱 QR koda za vstopnice
-      📅 Dodaj v koledar
-      💬 WhatsApp / Live chat
-      🔍 Structured data JSON-LD
-      📡 Web push obvestila
-      🎟 Loyalty program
-      ⭐ Testimonials / Ocene
-    💡 Bonus — Srednji Projekti
-      🗺 Interaktivni tloris sejma
-      🏢 Profili razstavljavcev
-      📸 Fotografski natečaj
-      📧 Segmentirane e-novice
-      🔗 Affiliate program
-      📋 Volunteer signup
-    💡 Bonus — Velike Vizije
-      🥽 AR / 3D predogled živali
-      👑 Exotic Club naročnina
-      🎓 Veterinarski vsebinski center
-      🌐 Partnerstvo s sejmi CEE
-      📹 Original video vsebina
-      🤝 Skupnost — Discord/Telegram forum
+        Contact info
+        Hero settings
+        Default theme colors
+      Analytics and Audit
+        Ticket sales reports
+        Page visit stats
+        Product popularity
+        Audit log of all changes
+    Bonus Quick Wins
+      QR code tickets
+      Add to calendar button
+      WhatsApp live chat
+      Structured data for Google
+      Web push notifications
+      Loyalty discount program
+      User reviews and testimonials
+    Bonus Medium Projects
+      Interactive fair floor plan
+      Exhibitor public profiles
+      Photo contest with voting
+      Segmented email newsletters
+      Affiliate referral program
+      Volunteer signup form
+    Bonus Big Visions
+      AR 3D animal preview
+      Exotic Club subscription
+      Vet and biology content hub
+      CEE fair partnerships
+      Original video content
+      Community Discord or forum
 ```
 
 ---
 
-## Kako uporabljati
+## How to view
 
-1. **VS Code** — Namestite razširitev *"Markdown Preview Mermaid Support"*, odprite ta file, pritisnite `Ctrl+Shift+V` (ali `Cmd+Shift+V` na Macu).
-2. **GitHub** — Naložite na GitHub. Mermaid diagram se avtomatsko renderira.
-3. **Obsidian** — Vključite Mermaid plugin, diagram se prikaže avtomatsko.
-4. **Mermaid Live Editor** — Kopirajte samo vsebino med 
-```mermaid in 
-``` na https://mermaid.live
+1. **VS Code**: Install "Markdown Preview Mermaid Support" extension, open this file, press `Ctrl+Shift+V`
+2. **GitHub**: Upload to repo - renders natively
+3. **Mermaid Live**: Copy the code between the triple backticks to https://mermaid.live
 
-## Legenda
+## Legend
 
-- 🟢 **Phase 1** — Že implementirano in objavljeno
-- 🔵 **Phase 2** — Junij 2026 — B2B portal za razstavljalce
-- 🟡 **Phase 3** — Q3 2026 — Admin CMS za samostojno upravljanje
-- 💡 **Bonus** — Ideje za hitro ali dolgoročno implementacijo
+- **Phase 1** - Already implemented and live
+- **Phase 2** - June 2026 - Exhibitor B2B portal
+- **Phase 3** - Q3 2026 - Admin CMS
+- **Bonus** - Ideas for quick or long-term implementation
