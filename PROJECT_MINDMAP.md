@@ -302,6 +302,12 @@ erDiagram
     int capacity
     int sold
   }
+  block_translations {
+    uuid id PK
+    uuid block_id FK
+    text lang
+    jsonb content
+  }
   blog_posts {
     uuid id PK
     text slug
